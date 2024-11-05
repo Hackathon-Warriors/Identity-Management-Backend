@@ -1,6 +1,7 @@
 from datetime import datetime, date
 from uuid import UUID
 
+from dotenv import load_dotenv
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
@@ -10,10 +11,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-from .api.liveliness_checker import views
 from flask.json import JSONEncoder
 from flask import Flask
-
 
 class CustomJSONEncoder(JSONEncoder):
     def default(self, o):
@@ -31,6 +30,7 @@ class IAMFlaskApp(Flask):
 
 
 def create_app():
+    load_dotenv()
     app = IAMFlaskApp(__name__)
     # Configure your app here
     initialize_blueprints(app)

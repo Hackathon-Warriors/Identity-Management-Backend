@@ -1,4 +1,5 @@
 # core imports
+import os
 from functools import wraps
 import logging
 import uuid
@@ -8,7 +9,7 @@ from flask import jsonify, Response
 
 from utils.logger import Logger
 
-log = Logger()
+log = Logger(os.getenv('DEBUG_MODE'))
 
 
 def to_json(status_code):
