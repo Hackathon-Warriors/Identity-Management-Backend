@@ -1,4 +1,5 @@
 # core imports
+import os
 from functools import wraps
 import logging
 import uuid
@@ -6,9 +7,12 @@ import uuid
 # third party imports
 from flask import jsonify, Response
 
+from utils.logger import Logger
+
+log = Logger(os.getenv('DEBUG_MODE'))
+
 
 def to_json(status_code):
-    # ToDo: Logging every request as it gets processed
     def outer(func):
         @wraps(func)
         def inner(*args, **kwargs):
