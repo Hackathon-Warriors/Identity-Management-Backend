@@ -6,9 +6,12 @@ import uuid
 # third party imports
 from flask import jsonify, Response
 
+from utils.logger import Logger
+
+log = Logger()
+
 
 def to_json(status_code):
-    # ToDo: Logging every request as it gets processed
     def outer(func):
         @wraps(func)
         def inner(*args, **kwargs):
