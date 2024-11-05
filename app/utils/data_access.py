@@ -9,6 +9,7 @@ from typing import Tuple
 import cv2
 from PIL import Image, ImageFile
 
+from app.utils import file_utils
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
