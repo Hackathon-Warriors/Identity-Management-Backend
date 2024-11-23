@@ -1,5 +1,10 @@
 import os
 import sys
+sys.path.append(os.getcwd())
+
+import enum
+
+from dataclasses import dataclass
 
 
 class Coordinates:
@@ -8,3 +13,17 @@ class Coordinates:
         self.y_bottom = y_bottom
         self.x_right = x_right
         self.y_top = y_top
+
+
+@dataclass
+class InternalLivenessResponse:
+    is_live: bool
+    msg: str
+
+
+class Messaging(enum.Enum):
+    LIVE = "The user is live."
+    MULTIPLE_FACES = "Multiple faces detected, please retry."
+    NO_FACE = "No face detected, please retry."
+    EYES_OPEN = "Please ensure your eyes are open."
+    HEADPOSE = "Please ensure that you are looking straight."
