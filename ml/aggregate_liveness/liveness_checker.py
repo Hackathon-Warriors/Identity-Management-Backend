@@ -18,7 +18,7 @@ face_detector = BlazefaceBackIndvision(weights_path=model_paths.BLAZEFAZE_BACK_W
 head_pose_estimator = HeadPoseEstimation(model_path=model_paths.SYNERGYNET_MODEL_PATH, debug=False)
 eye_open_detector = EyesOpenMediaPipe(model_path=model_paths.EYES_OPEN_MODEL_PATH)
 
-def check_liveness(file_path: str):
+def check_liveness(file_path: str) -> InternalLivenessResponse:
     """
     is_live
     msg
