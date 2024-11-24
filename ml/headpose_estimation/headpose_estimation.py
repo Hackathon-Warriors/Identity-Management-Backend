@@ -11,7 +11,7 @@ import threading
 from app.utils import image_utils
 from app.utils.data_access import DataAccessImage
 from app.models.asset import Coordinates
-from ml.headpose_estimation.SynergyNet.synergy_indvision import SynergyNet 
+from ml.headpose_estimation.SynergyNet.synergy_thales import SynergyNet 
 
 MIN_YAW = -30
 MIN_PITCH = -40
