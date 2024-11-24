@@ -92,7 +92,7 @@ class AntiSpoofCheck:
             output = output.cpu().detach().numpy()
         not_spoof_prob = round(output[0][1], 2)
         print(f"output: {output}\nnot_spoof_prob: {not_spoof_prob}")
-        if not_spoof_prob > 0.9:
+        if not_spoof_prob > 0.6:
             return True
         return False
 

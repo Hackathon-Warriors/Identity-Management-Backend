@@ -8,12 +8,15 @@ from app.db_models.liveliness import UserLivelinessData
 from app.db_models.documents import UserDocumentData
 from app.models.asset import FaceMatchResponse
 from ml.pdf_validation.pdf_validator import is_valid_pdf
+from ml.face_match.face_match import FaceMatch
+from ml import model_paths
 
 from utils.logger import Logger
 
 from pathlib import Path
 log = Logger()
 
+face_matcher = FaceMatch(face_detection_model_path=model_paths.FACE_MATCH_SCRFD, face_embedding_model_path=model_paths.FACE_MATCH_EMBEDDING)
 
 class DocCheckerService:
     def __init__(self):
@@ -76,7 +79,7 @@ class DocCheckerService:
                 return resp
 
             UserDocumentData.update_or_insert_row(user_id, request_id, DocumentTypes.POI.value, doc_format, save_path)
-            face_match_resp: FaceMatchResponse = match_faces(existing_livliness_record.file_path, save_path)
+            face_match_resp: FaceMatchResponse = face_matcher.match_faces(existing_livliness_record.file_path, save_path)
             if face_match_resp.is_similar:
                 UserLivelinessData.update_record_status(request_id, LivelinessRequestStatus.SUCCESS.value, None, True)
                 resp['success'] = True

@@ -3,7 +3,7 @@ import sys
 sys.path.append(os.getcwd())
 
 from typing import Tuple, List
-
+import threading
 import insightface
 
 from app.utils.data_access import DataAccessImage
@@ -21,6 +21,15 @@ class Face_Dict:
 
 
 class FaceMatch:
+    _instance = None
+    _lock = threading.Lock()
+    
+    def __new__(cls, *args, **kwargs):
+        with cls._lock:
+            if cls._instance is None:
+                cls._instance = super(FaceMatch, cls).__new__(cls)
+        return cls._instance
+    
     def __init__(self, face_detection_model_path: str, face_embedding_model_path: str):
         self.face_detector = insightface.model_zoo.get_model(name=face_detection_model_path, providers=['CPUExecutionProvider'])
         self.face_detector.prepare(ctx_id=0, input_size=(640, 640))

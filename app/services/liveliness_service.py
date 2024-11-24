@@ -24,7 +24,7 @@ class LivelinessCheckerService:
         resp = dict(success=False, error_msg="", data=dict(is_live=False))
         try:
             img_format = selfie_image.filename.split('.')[-1]
-            if img_format not in ['jpg', 'jpeg', 'png']:
+            if img_format not in ['jpg', 'jpeg', 'png', 'webp']:
                 resp['error_msg'] = ErrorMessages.INVALID_DOC_FORMAT.value
                 return
 
