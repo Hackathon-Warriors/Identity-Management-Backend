@@ -14,7 +14,6 @@ class ImageLivelinessCheckerView(MethodView):
         try:
             if 'selfie_image' not in request.files:
                 raise Exception('selfie_image not found in request')
-
             selfie_image = request.files['selfie_image']
             log.info(f"ImageLivelinessCheckerView :: selfie_image recieved :: {selfie_image}")
             resp = LivelinessCheckerService.check_image_liveliness(selfie_image)
