@@ -6,7 +6,6 @@ from app.constants.enums import LivelinessRequestStatus
 from app.constants.error_constants import ErrorMessages
 from app.db_models.liveliness import UserLivelinessData
 from app.models.asset import InternalLivenessResponse
-# from ml.liveliness_checker_v2 import check_liveness_v2
 from ml.aggregate_liveness.liveness_checker import check_liveness
 from utils.logger import Logger
 
