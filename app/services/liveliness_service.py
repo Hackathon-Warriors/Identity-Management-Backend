@@ -22,7 +22,7 @@ class LivelinessCheckerService:
         try:
             img_format = selfie_image.filename.split('.')[-1]
             if img_format not in ['jpg', 'jpeg', 'png']:
-                resp['error_msg'] = ErrorMessages.INVALID_IMG_FORMAT.value
+                resp['error_msg'] = ErrorMessages.INVALID_DOC_FORMAT.value
                 return
 
             upload_folder = os.getenv('UPLOAD_FOLDER_LIVELINESS')

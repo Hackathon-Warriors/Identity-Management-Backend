@@ -51,9 +51,11 @@ def initialize_extensions(appp):
 
 def initialize_blueprints(appp):
     from .api.liveliness_checker.urls import bp as liveliness_bp
+    from .api.doc_checker.urls import bp as doc_bp
     from .api.urls import bp as health_check_bp
     appp.register_blueprint(health_check_bp)
     appp.register_blueprint(liveliness_bp)
+    appp.register_blueprint(doc_bp)
 
 # enable app to discover all models
 from app import db_models  # NOQA
