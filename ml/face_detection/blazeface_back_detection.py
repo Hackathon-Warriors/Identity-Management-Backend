@@ -19,14 +19,14 @@ from app.models.asset import Coordinates
 BLAZEFACE_BACK_THRESHOLD = 0.6
 
 
-class BlazefaceBackIndvision:
+class BlazeeFaceThales:
     _instance = None
     _lock = threading.Lock()
     
     def __new__(cls, *args, **kwargs):
         with cls._lock:
             if cls._instance is None:
-                cls._instance = super(BlazefaceBackIndvision, cls).__new__(cls)
+                cls._instance = super(BlazeeFaceThales, cls).__new__(cls)
         return cls._instance
     
     def __init__(self, weights_path, anchors_path, debug: bool = False, device: str = 'cpu'):
