@@ -12,7 +12,7 @@ from utils.logger import Logger
 log = Logger()
 
 
-class LivelinessCheckerService:
+class DocCheckerService:
     def __init__(self):
         pass
 

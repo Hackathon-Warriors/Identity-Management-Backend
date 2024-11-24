@@ -15,8 +15,10 @@ class ImageLivelinessCheckerView(MethodView):
             if 'selfie_image' not in request.files:
                 raise Exception('selfie_image not found in request')
             selfie_image = request.files['selfie_image']
+            request_id = request.form['request_id']
+            user_id = request.form['user_id']
             log.info(f"ImageLivelinessCheckerView :: selfie_image recieved :: {selfie_image}")
-            resp = LivelinessCheckerService.check_image_liveliness(selfie_image)
+            resp = LivelinessCheckerService.check_image_liveliness(selfie_image, user_id, request_id)
             if resp.get('success'):
                 return jsonify(resp), 200
             else:
