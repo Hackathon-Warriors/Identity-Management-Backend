@@ -28,3 +28,10 @@ class Messaging(enum.Enum):
     EYES_OPEN = "Please ensure your eyes are open."
     HEADPOSE = "Please ensure that you are looking straight."
     SPOOF = "Please ensure you are not clicking photo of photo, mask etc"
+
+
+
+@dataclass
+class FaceMatchResponse:
+    is_similar: bool
+    msg: str 
