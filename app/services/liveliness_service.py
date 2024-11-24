@@ -22,7 +22,7 @@ class LivelinessCheckerService:
 
     @classmethod
     def check_image_liveliness(cls, selfie_image, user_id: int, request_id: str):
-        resp = dict(success=False, msg="", error_msg="")
+        resp = dict(success=False, error_msg="", data=dict(is_live=False))
         try:
             img_format = selfie_image.filename.split('.')[-1]
             if img_format not in ['jpg', 'jpeg', 'png']:
@@ -41,10 +41,10 @@ class LivelinessCheckerService:
             if liveliness_resp.is_live:
                 UserLivelinessData.update_record_status(request_id, LivelinessRequestStatus.SUCCESS.value, None, True)
                 resp['success'] = True
-                resp['msg'] = "Liveness check passed"
+                resp['data']['is_live'] = True
             else:
                 UserLivelinessData.update_record_status(request_id, LivelinessRequestStatus.FAILED.value, liveliness_resp.msg, False)
-                resp['msg'] = liveliness_resp.msg
+                resp['error_msg'] = liveliness_resp.msg
                 resp['success'] = True
             db.session.commit()
             return resp
