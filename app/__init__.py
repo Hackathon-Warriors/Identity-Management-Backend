@@ -31,14 +31,14 @@ class IAMFlaskApp(Flask):
 
 def create_app():
     load_dotenv()
-    app = IAMFlaskApp(__name__)
+    appp = IAMFlaskApp(__name__)
     # Configure your app here
-    initialize_blueprints(app)
-    return app
+    initialize_blueprints(appp)
+    return appp
 
 
-def initialize_blueprints(app):
-    from .api.liveliness_checker import bp as live_bp
+def initialize_blueprints(appp):
+    from .api.liveliness_checker.urls import bp as liveliness_bp
     from .api.urls import bp as health_check_bp
-    app.register_blueprint(health_check_bp)
-    app.register_blueprint(live_bp)
+    appp.register_blueprint(health_check_bp)
+    appp.register_blueprint(liveliness_bp)
