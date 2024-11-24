@@ -9,13 +9,13 @@ from app.models.asset import InternalLivenessResponse, Messaging
 from app.utils.data_access import DataAccessImage
 from app.models.asset import Coordinates
 
-from ml.face_detection.blazeface_back_detection import BlazefaceBackIndvision
+from ml.face_detection.blazeface_back_detection import BlazeeFaceThales
 from ml.eyes_open.Mediapipe.eyes_open_detection import EyesOpenMediaPipe
 from ml.headpose_estimation.headpose_estimation import HeadPoseEstimation
 from ml.spoof_detection.anti_spoof_detection import AntiSpoofCheck
 from ml import model_paths
 
-face_detector = BlazefaceBackIndvision(weights_path=model_paths.BLAZEFAZE_BACK_WEIGHTS_PATH, anchors_path=model_paths.BLAZEFAZE_BACK_ANCHORS_PATH, debug=False, device='cpu')
+face_detector = BlazeeFaceThales(weights_path=model_paths.BLAZEFAZE_BACK_WEIGHTS_PATH, anchors_path=model_paths.BLAZEFAZE_BACK_ANCHORS_PATH, debug=False, device='cpu')
 head_pose_estimator = HeadPoseEstimation(model_path=model_paths.SYNERGYNET_MODEL_PATH, debug=False)
 eye_open_detector = EyesOpenMediaPipe(model_path=model_paths.EYES_OPEN_MODEL_PATH)
 anti_spoof_checker = AntiSpoofCheck(model_path=model_paths.SPOOF_MODEL_PATH)
