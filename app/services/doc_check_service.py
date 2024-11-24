@@ -6,9 +6,12 @@ from app.constants.enums import LivelinessRequestStatus
 from app.constants.error_constants import ErrorMessages
 from app.db_models.liveliness import UserLivelinessData
 from app.models.asset import InternalLivenessResponse
-from ml.liveliness_checker_v2 import check_liveness_v2
+# from ml.liveliness_checker_v2 import check_liveness_v2
+from ml.aggregate_liveness.liveness_checker import check_liveness
+
 from utils.logger import Logger
 
+from pathlib import Path
 log = Logger()
 
 
@@ -27,7 +30,7 @@ class DocCheckerService:
 
             upload_folder = os.getenv('UPLOAD_FOLDER_LIVELINESS')
             if not os.path.exists(upload_folder):
-                os.mkdir(upload_folder)
+                Path(upload_folder).mkdir(exists_ok=True, parents=True)
 
             save_filename = f'{request_id}_{statement_doc.filename}'
             save_path = os.path.join(upload_folder, save_filename)
@@ -59,7 +62,7 @@ class DocCheckerService:
 
             upload_folder = os.getenv('UPLOAD_FOLDER_LIVELINESS')
             if not os.path.exists(upload_folder):
-                os.mkdir(upload_folder)
+                Path(upload_folder).mkdir(exists_ok=True, parents=True)
 
             save_filename = f'{request_id}_{poi_doc.filename}'
             save_path = os.path.join(upload_folder, save_filename)
