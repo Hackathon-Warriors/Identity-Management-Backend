@@ -7,7 +7,7 @@ manager = Manager(app)
 @manager.command
 def runserver():
     """Run the Flask development server."""
-    app.run(debug=True)
+    app.run(debug=True, port=8001)
 
 if __name__ == '__main__':
     manager.run()

@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.append(os.getcwd())
-sys.path.append("/Users/divyanshnew/Documents/open_src_github/Identity-Management-Backend/ml/headpose_estimation/SynergyNet")
+sys.path.append("/Users/divyanshnew/Documents/open_src_github/Identity-Management-Backend/ml/headpose_estimation/SynergyNet/")
 
 import cv2
 from math import cos, sin
@@ -13,7 +13,7 @@ import torch.nn as nn
 
 from ml.headpose_estimation.SynergyNet.utils.params import ParamsPack
 # import loss_definition
-from utils.inference import (
+from ml.headpose_estimation.SynergyNet.utils.inference import (
     predict_sparseVert,
     # predict_pose,
     # crop_img,
